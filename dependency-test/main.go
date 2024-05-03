@@ -56,6 +56,10 @@ func (graph *Graph) TopologicalSort() []string {
 	return stack
 }
 
+func PrintCommand(cmd string, args []string) {
+	fmt.Println("Running:", cmd, strings.Join(args, " "))
+}
+
 func ListFiles() map[string][]string {
 	files, err := os.ReadDir(".")
 	if err != nil {
@@ -71,6 +75,8 @@ func ListFiles() map[string][]string {
 		if filepath.Ext(file.Name()) != ".ml" {
 			continue
 		}
+
+		PrintCommand("ocamldep", []string{"-modules", file.Name()})
 
 		cmd := exec.Command("ocamldep", "-modules", file.Name())
 		output, err := cmd.Output()
@@ -166,7 +172,7 @@ func CompileFiles(files []string, libraries []string) {
 		compile_args := append([]string{"ocamlopt"}, library_flags...)
 		compile_args = append(compile_args, "-c", file)
 
-		fmt.Println(compile_args)
+		PrintCommand("ocamlfind", compile_args)
 
 		cmd := exec.Command("ocamlfind", compile_args...)
 		output, err := cmd.CombinedOutput()
@@ -187,6 +193,8 @@ func CompileFiles(files []string, libraries []string) {
 			link_args = append(link_args, strings.Replace(files[index], ".ml", ".cmx", 1))
 		}
 	}
+
+	PrintCommand("ocamlfind", link_args)
 
 	cmd := exec.Command("ocamlfind", link_args...)
 	output, err := cmd.CombinedOutput()
