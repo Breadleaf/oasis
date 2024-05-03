@@ -1,0 +1,12 @@
+to compile with multiple packages each package must be seperate
+ex: -package re -package random
+
+it is ok to compile a package with no dependencies with the
+packages anyways (this might simplify the compilation process)
+CHECK: see if this makes the final exe bigger
+ANS: there seems to be no differece from a small test
+
+order of compilation matters, a given files mli file must be
+compiled before the ml file. then in the final link if file B
+uses something from file A then file A.cmx must come before file
+B.cmx in the link command
