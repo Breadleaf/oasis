@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	_ "os/exec"
 )
 
 func check(e error) {
@@ -25,5 +26,17 @@ func main() {
 	check(err)
 
 	// print json
-	fmt.Println(oasis)
+	// fmt.Println(oasis)
+
+	build, ok := oasis["build"].(map[string]interface{})
+	if !ok {
+		panic("build is not a map[string]interface{}")
+	}
+
+	mode, ok := build["mode"].(string)
+	if !ok {
+		panic("mode is not a string")
+	}
+
+	fmt.Println("mode:", mode)
 }

@@ -1,8 +1,9 @@
 {
 	"requirements": [
-		"re"
+		"re",
+		"random"
 	],
-	"app": {
+	"build": {
 		"mode": "native|virtual"
 	}
 }
