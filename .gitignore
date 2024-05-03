@@ -1,0 +1,10 @@
+# Ocaml build artefacts
+**/*.cmi
+**/*.cmo
+**/*.cmx
+**/*.o
+
+# Executables
+**/a.out
+**/main
+**/oasis
