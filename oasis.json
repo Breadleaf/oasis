@@ -1,0 +1,8 @@
+{
+	"requirements": [
+		"re"
+	],
+	"app": {
+		"mode": "native|virtual"
+	}
+}
