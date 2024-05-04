@@ -1,0 +1,12 @@
+implement feature for full path resoultion
+file a/b.ml should resolve to a/b.ml not b.ml
+
+implement file entry specification
+(should work like the python compiler)
+ex: python3 main.py will compile main.py as the entry point of the program
+
+implement directory walking to get files from multiple directories
+if main.ml relies on ./subdir/lib.ml compiler should figure this out
+
+make a test standard modeled after go
+ex: fname_test.ml
